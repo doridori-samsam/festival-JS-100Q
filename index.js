@@ -335,7 +335,7 @@ else{
     alert('NO')
 }
 
-//답
+답
 const height = prompt("키를 입력하세요.");
 
 if (height >= 150){
