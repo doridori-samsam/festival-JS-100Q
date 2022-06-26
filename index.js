@@ -518,3 +518,105 @@ const planets = {
 const name = prompt("행성의 이름을 입력하세요.");
 
 console.log(planets[name]);
+
+
+//문제 27 : 객체 만들기 ❌ - 다시 풀어보세요
+//첫번째 입력에서는 학생의 이름이 공백으로 구분되어 입력되고, 두번째에는 그 학생의 수학 점수가 공백으로 구분되어 주어집니다.
+//두 개를 합쳐 학생의 이름이 key이고 value가 수학 점수인 객체를 출력해 주세요.
+
+입력
+Yujin Hyewon
+70 100
+
+출력
+{'Yujin':70, 'Hyewon':100}
+
+//답
+const name = prompt('학생 이름은?').split(' ');
+const score = prompt('점수는?').split(' ');
+const result = {};
+
+for (let i=0; i<name.length; i++){
+    result[name[i]] = praseInt(values[i], 10);
+}
+
+console.log(obj);
+
+
+//문제 28 : 2-gram ❌ - 다시 풀어보세요.
+//2-gram이란 문자열에서 2개의 연속된 요소를 출력하는 방법입니다.
+//예를 들어, 'JavaScript'를 2-gram으로 반복해 본다면 다음과 같은 결과가 나옵니다.
+
+입력
+Javascript
+
+출력
+J a
+a v
+v a
+a s
+s c
+c r
+r i
+i p
+p t
+
+//입력으로 문자열이 주어지면 2-gram으로 출력하는 프로그램을 작성해 주세요.
+
+//내 답안
+const letter = prompt('문자를 입력하세요.').split('');
+for(i=0; i<letter.length; i++){
+    var i;
+    console.log(letter[i], letter[i+1]);
+}
+
+//답
+const data = prompt('문자를 입력하세요.');
+
+for (let i=0; i<data.length-1; i++){
+  console.log(data[i], data[i+1]);
+}
+
+
+//문제 29 : 대문자만 지나가세요
+//진구는 영어 학원 아르바이트를 하고 있습니다. 반 아이들은 알파벳을 공부하는 학생들인데 오늘은 대문자 쓰기 시험을 봤습니다.
+//알파벳 하나만을 입력하고 그 알파벳이 대문자이면 YES를 아니면 NO를 출력하는 프로그램을 만들어 주세요.
+
+//내 답안
+const letter = prompt('알파벳을 입력하세요.');
+const regExp = /[A-Z]/g;
+alert(regExp.test(letter) ? 'YES' : 'NO');
+
+//답
+const data = prompt('알파벳을 입력하세요.');
+if(data === data.toUpperCase()){
+    console.log('YES');
+} else{
+    console.log('NO');
+}
+
+//문제 30 : 문자열 속 문자 찾기
+//문자 pineapple에는 apple이라는 문자가 숨어 있습니다. 원범이는 이렇듯 문자열 속에 숨어있는 문자를 찾아보려고 합니다.
+//첫번째 입력에서는 문자열이 입력되고, 두 번째에는 찾을 문자가 입력되어야 합니다.
+//그 문자가 시작하는 index를 반환하는 프로그램을 만들어 주세요.
+
+입력
+pineapple is yummy
+apple
+
+출력
+4
+
+//내 답안
+const sentence = prompt("문장을 입력하세요.");
+const word = prompt("찾을 단어를 입력하세요.");
+
+alert(sentence.search(word));
+
+//답
+const data = prompt('문자열을 입력하세요.');
+const word = prompt('찾을 단어를 입력하세요.');
+
+console.log(data.indexOf(word));
+
+
