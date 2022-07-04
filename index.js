@@ -650,7 +650,7 @@ const string = prompt('문자열을 입력하세요.')split(' ');
 console.log(string.length);
 
 
-//문제 33 : 거꾸로 출력하기
+//문제 33 : 거꾸로 출력하기 ❓-답안 오류?
 //한 줄에 여러개의 숫자가 입력되면, 역순으로 그 숫자들을 하나씩 출력하는 프로그램을 작성하시오.
 
 입력 : 1 2 3 4 5
@@ -674,4 +674,123 @@ for(let i=0; i<data.length; i++){
 
 console.log(result);
 
+//문제 34 : sort 구현하기
+//민주는 체육부장으로 체육시간이 되면 반 친구들이 제대로 키 순서대로 모였는지를 확인해야 한다.
+//그런데 요즘 민주는 그것이 너무 번거롭게 느껴져 한 번에 확인하고 싶어한다.
+//민주를 위해 키가 주어지면 순서대로 제대로 섰는지 확인하는 프로그램을 작성해 보자.(키는 공백으로 구분하여 입력됩니다.)
 
+입력 : 176 156 155 165 166 169
+출력 : NO
+
+입력 : 155 156 165 166 169 176
+출력 : YES
+
+//내 답안
+const height = prompt("키를 입력하세요.").split(" ");
+
+function align(a, b) {
+  return a - b;
+}
+
+const srt = [...height].sort(align);
+
+console.log(srt.join("") === height.join("") ? "YES" : "NO");
+
+//답
+const unsorted = prompt('키를 입력하세요');
+let sorted = "";
+
+sorted = unsorted.split(' ').sort(function(a, b){return a - b;}).join(" ");
+
+if(unsorted === sorted){
+    console.log("Yes");
+} else{
+    console.log("No");
+}
+
+
+//문제 35 : Factory 함수 사용하기 - ❌ 다시 풀어 보세요.
+//2제곱, 3제곱, 4제곱을 할 수 있는 Factory 함수를 만들려고 합니다.
+//<pass>에 코드를 작성하여 two함수를 완서하세요.
+
+function one(n){
+    function two(){
+        //pass
+    }
+    return two;
+}
+
+const a = one(2);
+const b = one(3);
+const c = one(4);
+
+console.log(a(10));
+console.log(b(10));
+console.log(c(10));
+
+//내 답안
+function one(n){
+    function two(x){
+        Math.pow(n, x);
+    }
+}
+
+//답
+
+function one(n){
+    function two(value){
+        const sq = Math.pow(value,n);
+        return sq;
+    }
+    return two;
+}
+
+//문제 36 : 구구단 출력하기
+//1~9까지의 숫자 중 하나를 입력하면 그 단의 구구단 결과를 한 줄에 출력하는 프로그램을 작성하세요.
+
+입출력
+입력 : 2
+출력 : 2 4 6 8 10 12 14 16 18
+
+//내 답안
+const num = prompt('구구단을 외자, 구구단을 외자!')
+let num2 = parseInt(num);
+
+for (let i = 1; i < 10; i++) {
+  let result = num2 * i;
+  console.log(result);
+}
+
+//답
+const num = prompt('1 ~ 9까지의 숫자 중 하나를 입력하세요.')
+let result = '';
+
+for (let i=1; i<=9; i++){
+  result += i*num + ' ';
+}
+
+console.log(result);
+
+
+//문제 37 : 반장 선거 - 💥 ❗ 어려움!!
+//새 학기를 맞아 호준이네 반은 반장 선거를 하기로 했습니다. 그런데 표를 하나씩 개표하는 과정이 너무 번거롭게 느껴진 당신은
+//학생들이 뽑은 후보들을 입력받으면 뽑힌 학생의 이름과 받은 표 수를 출력하는 프로그램을 작성하기로 하였습니다.
+
+입력
+원범 원범 혜원 혜원 혜원 혜원 유진 유진
+
+출력
+혜원(이)가 총 4표로 반장이 되었습니다.
+
+//내 답안
+
+
+//문제 38 : 호준이의 아르바이트
+//호준이는 아르바이트로 영어 학원에서 단어 시험지를 채점하는 일을 하고 있다. 호준이가 일하는 학원은 매번 1위부터 3위까지의 학생에게 상으로 사탕을 준다.
+//그런데 오늘은 마침 사탕이 다 떨어져서 호준이가 채점을 하고 점수를 보내면, 당신이 아이들의 숫자만큼 사탕을 사러 가기로 했다.
+//1위~3위 학생은 여러명일 수 있고 1~3위 학생 중 중복되는 학생까지 포함하여 사탕을 사기로 한다.
+//학생들의 점수를 공백으로 구분하여 입력을 받고 사탕을 받을 학생의 수를 출력하세요.
+
+입출력
+입력 : 97 86 75 66 55 97 85 97 97 95
+출력 : 6
