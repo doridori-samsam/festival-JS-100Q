@@ -1247,7 +1247,11 @@ numbers.sort((a, b) => {
 console.log(numbers[0]);
 
 
+<<<<<<< HEAD
 //문제 50 : 버블정렬 구현하기 ✨
+=======
+//문제 50 : 버블정렬 구현하기
+>>>>>>> 89d88204aa416d4abccf77c8b8d5606e82d57a89
 //버블정렬은 두 인접한 원소를 검사하여 정렬하는 방법을 말합니다. 시간 복잡도는 느리지만 코드가 단순하기 때문에 자주 사용됩니다.
 //아래 코드의 빈 칸을 채워 버블 정렬을 완성해 봅시다.
 function bubble(arr) {
@@ -1277,6 +1281,7 @@ let j = 0; j < result.length; j++
 let j = 0; j < result.length - 1; j++
 let temp = result[j];
 result[j] = result[j+1];
+<<<<<<< HEAD
 result[j+1] = temp;
 
 //문제 51 : merge sort를 만들어보자
