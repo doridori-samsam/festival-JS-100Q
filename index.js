@@ -924,7 +924,33 @@ console.log(word.replace(/q/gi, 'e'));
 2
 
 //내 답안
-const arr = prompt('입력')
+const arr = prompt('입력').split(" ").map((item) => parseInt(item));
+
+let count = 0;
+let total = 0;
+
+for (let i = 2; i < arr.length; i++) {
+  total += arr[i];
+  if (total <= arr[0]) {
+    count++;
+  }
+}
+console.log(count);
+
+//답
+let total = 0;
+let count = 0;
+const limit = prompt('제한 무게를 입력하세요.');
+const n = prompt('인원수를 입력하세요.');
+
+for (let i=1; i<=n; i++){
+  total += parseInt(prompt('무게를 입력해주세요.'), 10);
+  if (total <= limit){
+		count = i;
+  }
+}
+
+console.log(count);
 
  
 //문제 41 : 소수판별 💚더 나은방법 있음.💚
@@ -986,6 +1012,375 @@ check_prime(num);
 //2020년 a월 b일은 실제로 있는 날입니다.(13월 26일이나 2월 45일 같은 날짜는 주어지지 않습니다.)
 
 //내 답안
-a월 b일
-a >= 1, a <= 12(1~12)
-b >= 1, b <= 31 (a가 2일(2월), b의 최대값은 29)
+const data = prompt('월과 일을 입력하세요.').split(' ').map((item) => parseInt(item))
+
+function findDay(a, b) {
+  if (a === 0 || b === 0) {
+    console.log("월과 일 숫자를 입력하세요.");
+  } else if (a > 12 || b > 31) {
+    console.log("잘못된 입력입니다.");
+  } else if (a === 2 && b > 29) {
+    console.log("2월은 29일까지입니다.");
+  } else {
+    let date2 = new Date(`2020-${a}-${b}`);
+    const dayList = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    return console.log(dayList[date2.getDay()]);
+  }
+}
+
+findDay(data[0], data[1]);
+
+//답
+const month = prompt('월을 입력하세요.');
+const date = prompt('일을 입력하세요.');
+
+function solution(a,b){
+    const day = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+
+    const x = new Date('2020-'+a+'-'+b);
+    return day[x.getDay()];
+}
+console.log(solution(month, date));
+
+
+//문제 43 : 10진수를 2진수로 💚강의 들어서 원리 이해해보기💚
+//우리가 흔히 사용하는 숫자 1, 8, 19 ,28893 등등...은 10진수 체계입니다.
+//이를 컴퓨터가 알아 들을 수 있는 2진수로 바꾸려고 합니다. 어떻게 해야할까요?
+//사용자에게 숫자를 입력받고 이를 2진수로 바꾸고 그 값을 출력해주세요.
+
+//내 답안
+const num = prompt('숫자를 입력해주세요.')
+console.log(parseInt(num, 10).toString(2));
+
+//답
+let a = prompt('10진수를 입력해주세요.')
+let b = [];
+let result = '';
+
+while (a){
+	b.push(a % 2);
+	a = parseInt(a / 2, 10);
+}
+b.reverse();
+
+b.forEach((n) => {
+  result += n;
+})
+
+console.log(result);
+
+
+//문제 44 : 각 자리수의 합
+//사용자가 입력한 양의 정수의 각 자리수의 합을 구하는 프로그램을 만들어주세요.
+//예를 들어 18234 = 1+8+2+3+4 이고 정답은 18입니다.
+//3849 = 3+8+4+9 이고 정답은 24입니다.
+
+입출력
+입력: 18234
+출력: 18
+
+입력: 3849
+출력: 24
+
+//내 답안
+const num = prompt('숫자를 입력하세요').split(' ').map((item) => parseInt(item));
+
+let result = num.reduce((a, b) => {
+  return a + b;
+});
+
+console.log(result)
+
+//답 (더 이상 나눠지지 않을 때까지 10으로 나누면 나머지가 각 자리수가 된다...)
+let n = prompt('숫자를 입력하세요.');
+let sum = 0;
+
+while(n !== 0){
+  sum += (n % 10);
+  n = Math.floor(n/10);
+}
+
+console.log(sum);
+
+
+//문제 45 :  getTime()함수 사용하기
+//Date 객체의 메소드 중 하나인 getTime()은 1970년 1월 1일 0시 0분 0초 이후로부터 지금까지 흐른 시간을 천분의 1초 단위(ms)로 반환합니다.
+//이를 이용하여 현재 연도(2022)를 출력해보세요.
+
+//내 답안
+const today = new Date();
+console.log(today);
+
+let todayYear = today.getTime() / 1000 / 60 / 60 / 24 / 365;
+console.log(Math.floor(todayYear) + 1970);
+
+//답
+const d = new Date();
+
+let year = d.getTime();
+year = Math.floor(year/(3600*24*365*1000))+1970 //3600초 = 1시간
+
+
+console.log(year);
+
+
+//문제 46 : 각 자리수의 합 2
+//1부터 20까지의(20을 포함) 모든 숫자를 일렬로 놓고 모든 자릿수의 총 합을 구하세요.
+//예를 들어 10부터 15까지의 모든 숫자를 일렬로 놓으면 101112131415 이고 각 자리의 숫자를 더하면 21입니다. (1+0+1+1+1+2+1+3+1+4+1+5 = 21)
+
+//내 답안
+let num = "";
+for (let i = 1; i <= 20; i++) {
+  num += i;
+}
+let arr = num.split("").map((item) => parseInt(item, 10));
+let result = arr.reduce((a, b) => {
+  return a + b;
+});
+
+console.log(result); //102
+
+//답
+let arr = [];
+let sum = 0;
+
+for (let i=0; i<20; i++){
+  arr[i] = i+1;
+}
+
+arr.forEach((n) => {
+  while(n !== 0){
+    sum += (n % 10);
+    n = Math.floor(n/10);
+  }
+})
+
+console.log(sum);
+
+
+//문제 47 : set자료형의 응용
+//바울랩에서는 3월 29일 제주대학교에서 '제주 빅데이터 사회혁신 해커톤' 행사를 주최하게 되었습니다.
+//이에 구글 설문지를 배포하였으나 제주대학생들이 중복해서 n개씩 설문지를 제출하였습니다.
+//중복된 데이터들을 삭제하여 실제 접수 명단이 몇 명인지 알고 싶습니다.
+//아래 주어진 데이터들로부터 중복을 제거하여 실제 접수 인원을 출력해 주세요.
+const people = {
+  이호준: "01050442903",
+  이호상: "01051442904",
+  이준호: "01050342904",
+  이호준: "01050442903",
+  이준: "01050412904",
+  이호: "01050443904",
+  이호준: "01050442903"
+};
+
+//내 답안
+let newPeople = new Set([people]);
+console.log(Object.keys(...newPeople).length); //5
+
+//답
+let result = new Set();
+for (let key in people) {
+  result.add(people[key]);
+}
+console.log(result.size); //size 는 set 객체 내 값의 개수를 반환합니다.
+
+
+//문제 48 : 대소문자 바꿔서 출력하기
+//문자열이 주어지면 대문자와 소문자를 바꿔서 출력하는 프로그램을 작성하세요.
+
+입출력
+입력: AAABBBcccddd
+출력: aaabbbCCCDDD
+
+//내 답안
+const char = prompt('문자를 입력하세요.').split('');
+let result = "";
+
+char.forEach((item) => {
+  result +=
+    item === item.toUpperCase() ? item.toLowerCase() : item.toUpperCase();
+});
+
+console.log(result);
+
+//답
+let a = prompt('문자열을 입력하세요.');
+let b = [];
+let s = '';
+
+for (let i=0; i<a.length; i++){
+	//toLowerCase() 메서드는 문자열을 소문자로, toUpperCase() 메서드는 문자열을 대문자로 변환하여 반환합니다.
+  if(a[i] === a[i].toLowerCase()){ 
+    b.push(a[i].toUpperCase());
+  } else {
+    b.push(a[i].toLowerCase());
+  }
+}
+
+for (let j=0; j<b.length; j++){
+  s += b[j];
+}
+
+console.log(s)
+
+
+//문제 49 : 최댓값 구하기
+//순서가 없는 10개의 숫자가 공백으로 구분되어 주어진다. 주어진 숫자들 중 최댓값을 반환하라.
+
+입출력
+입력: 10 9 8 7 6 5 4 3 2 1
+출력: 10
+
+//내 답안
+const num = prompt('숫자를 입력하세요').split(' ').map((item) => parseInt(item, 10));
+console.log(Math.max(...num))
+
+//답
+let numbers = prompt('10개의 숫자를 입력하세요').split(' ').map((n) => {
+  return parseInt(n, 10);
+});
+
+numbers.sort((a, b) => {
+  return b-a;
+});
+
+console.log(numbers[0]);
+
+
+//문제 50 : 버블정렬 구현하기 ✨
+//버블정렬은 두 인접한 원소를 검사하여 정렬하는 방법을 말합니다. 시간 복잡도는 느리지만 코드가 단순하기 때문에 자주 사용됩니다.
+//아래 코드의 빈 칸을 채워 버블 정렬을 완성해 봅시다.
+function bubble(arr) {
+  let result = arr.slice(); 
+
+  for (let i = 0; i < result.length - 1; i++) {
+    for (/*빈칸을 채워주세요.*/) {
+      if (result[j] > result[j + 1]) {
+         //빈칸을 채워주세요.
+      }
+    }
+  }
+  return result;
+}
+
+const items = prompt('입력해주세요.').split(' ').map((n) => {
+  return parseInt(n, 10);
+});
+
+console.log(bubble(items));
+
+//내 답안
+let j = 0; j < result.length; j++
+[[result[j], result[j + 1]]] = [[result[j + 1], result[j]]]
+
+//답
+let j = 0; j < result.length - 1; j++
+let temp = result[j];
+result[j] = result[j+1];
+result[j+1] = temp;
+
+//문제 51 : merge sort를 만들어보자
+//병합정렬(merge sort)은 대표적인 정렬 알고리즘 중 하나로 다음과 같이 동작합니다.
+
+//1. 리스트의 길이가 0 또는 1이면 이미 정렬된 것으로 본다. 그렇지 않은 경우에는
+//2. 정렬되지 않은 리스트를 절반으로 잘라 비슷한 크기의 두 부분 리스트로 나눈다.
+//3. 각 부분 리스트를 재귀적으로 합병 정렬을 이용해 정렬한다.
+
+//다음 코드의 빈칸을 채워 병합정렬을 완성해 봅시다.
+function mergeSort(arr){
+  if (arr.length <= 1){
+    return arr;
+  }
+
+  const mid = Math.floor(arr.length / 2);
+  const left = arr.slice(0,mid);
+  const right = arr.slice(mid);
+
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right){
+  let result = [];
+
+  while (/*빈칸을 채워주세요*/ && /*빈칸을 채워주세요*/){
+    if (/*빈칸을 채워주세요*/){
+      result.push(left.shift());
+    } else {
+      result.push(right.shift());
+    }
+  }
+  while (left.length) {
+    /*빈칸을 채워주세요*/
+  }
+  while (right.length) {
+    /*빈칸을 채워주세요*/
+  }
+
+  return result;
+}
+
+const array = prompt('배열을 입력하세요').split(' ').map(n => parseInt(n, 10));
+
+console.log(mergeSort(array));
+
+//내 답안
+while (/*빈칸을 채워주세요*/ && /*빈칸을 채워주세요*/){
+  if (/*빈칸을 채워주세요*/){
+    result.push(left.shift());
+  } else {
+    result.push(right.shift());
+  }
+}
+while (left.length) {
+  /*빈칸을 채워주세요*/
+}
+while (right.length) {
+  /*빈칸을 채워주세요*/
+}
+
+
+//문제 52 : quick sort
+//다음 빈 칸을 채워 퀵 정렬을 완성해주세요.
+
+function quickSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  const pivot = arr[0];
+  const left = [];
+  const right = [];
+
+  for (let i = 1; i < arr.length; i++){
+    if (/*빈칸을 채워주세요*/) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+    return /*빈칸을 채워주세요*/
+  }
+}
+
+const array = prompt('배열을 입력하세요').split(' ').map(n => parseInt(n, 10));
+
+console.log(quickSort(array));
+
+//내 답안
+for (let i = 1; i < arr.length; i++){
+  if (arr[i]<pivot) {
+    left.push(arr[i]);
+  } else {
+    right.push(arr[i]);
+  }
+  return /*빈칸을 채워주세요*/
+}
+
+//답안
+for (let i = 1; i < arr.length; i++){
+  if (arr[i]<pivot) {
+    left.push(arr[i]);
+  } else {
+    right.push(arr[i]);
+  }
+  return /*빈칸을 채워주세요*/
+}
